@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-deployment
+  namespace: change_me-namespace
+  labels:
+    app: dashboard
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dashboard
+  template:
+    metadata:
+      labels:
+        app: dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: 000000000000.dkr.ecr.eu-west-1.amazonaws.com/ecr_name:change_me
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config-map
+                  key: env.global.app_name
+      volumes:
+        - name: change_me-cert-secret
+          secret:
+            secretName: change_me-cert-secret
+      imagePullSecrets:
+        - name: change_me-secret-container-registry

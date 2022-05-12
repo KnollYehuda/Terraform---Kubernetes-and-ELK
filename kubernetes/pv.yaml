@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dynamic-pv
+  namespace: change_me-namespace
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-dynamic-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: "will-be-changed-to-the-pre-created-EFS-id"

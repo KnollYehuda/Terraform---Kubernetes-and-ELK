@@ -1,0 +1,19 @@
+{
+  "environment_name": "change_me",
+  "main_region_name": "eu-west-2",
+  "aws_main_access_key": "change_me",
+  "aws_main_secret_access_key": "change_me",
+  "subnet_public_01_availability_zone": "eu-west-2a",
+  "subnet_public_02_availability_zone": "eu-west-2b",
+  "mysql_master_username": "change_me",
+  "mysql_master_password": "change_me",
+  "mq_username": "change_me",
+  "mq_password": "change_me",
+  "google_project": "change_me",
+  "region": "europe-west1",
+  "zone": "europe-west1-b",
+  "google_cloud_service_account": "change_me",
+  "all_phrase_mail": "change_me@change_me.com",
+  "elasticsearch_ami": "change_me",
+  "elasticsearch_password": "change_me"
+}

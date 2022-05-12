@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config-map
+  namespace: change_me-namespace
+data:
+  env.global.app_name: "automatically_changed"

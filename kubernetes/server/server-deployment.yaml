@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+  namespace: change_me-namespace
+  labels:
+    app: server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+        - name: server
+          image: 000000000000.dkr.ecr.change_me.amazonaws.com/ecr_name:change_me
+          ports:
+            - containerPort: 6000
+          imagePullPolicy: Always
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config-map
+                  key: env.global.app_name
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /tmp
+      volumes:
+        - name: change_me-cert-secret
+          secret:
+            secretName: change_me-cert-secret
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: efs-dynamic-claim
+      imagePullSecrets:
+        - name: change_me-secret-container-registry
